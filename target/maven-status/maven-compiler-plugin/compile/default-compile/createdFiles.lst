@@ -1,0 +1,8 @@
+com\dnsbelgium\crawler\CrawlerService.class
+com\dnsbelgium\crawler\DuckDBTableCreator.class
+com\dnsbelgium\crawler\Crawler.class
+com\dnsbelgium\crawler\MyDuckDBConnection.class
+com\dnsbelgium\crawler\LinkData.class
+com\dnsbelgium\crawler\DuckDBAnalytics.class
+com\dnsbelgium\crawler\CrawlerController.class
+com\dnsbelgium\crawler\Application.class
