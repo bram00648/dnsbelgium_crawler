@@ -11,7 +11,6 @@ public class MyDuckDBConnection {
 
     public static Connection connect(String dbPath) {
         try {
-            // Ensure the directory exists
             File dbFile = new File(dbPath);
             File parentDir = dbFile.getParentFile();
             if (parentDir != null && !parentDir.exists()) {
@@ -33,13 +32,12 @@ public class MyDuckDBConnection {
             File originalDbFile = new File(originalDbPath);
             File replicatedDbFile = new File(replicatedDbPath);
 
-            // Check if the original database file exists
             if (!originalDbFile.exists()) {
                 System.err.println("Original database file does not exist: " + originalDbPath);
                 return;
             }
 
-            // Copy the original database file to the replicated file
+            // replicatie hier
             Files.copy(originalDbFile.toPath(), replicatedDbFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
             System.out.println("Replicated database to: " + replicatedDbFile.getAbsolutePath());

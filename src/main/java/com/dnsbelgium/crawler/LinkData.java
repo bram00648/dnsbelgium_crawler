@@ -6,7 +6,6 @@ public class LinkData {
     private String type;
     private double responseTime;
 
-    // Getters and setters
     public String getUrl() {
         return url;
     }

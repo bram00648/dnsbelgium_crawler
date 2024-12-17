@@ -16,7 +16,7 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Scheduled(fixedRate = 1800000) // 30 minutes in milliseconds
+    @Scheduled(fixedRate = 5000)
     public void replicateDatabase() {
         MyDuckDBConnection.replicateDatabase(ORIGINAL_DB_PATH, REPLICATED_DB_PATH);
         DuckDBTableCreator.createLinksTableInBothDatabases(ORIGINAL_DB_PATH, REPLICATED_DB_PATH);

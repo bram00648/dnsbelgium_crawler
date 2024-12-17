@@ -23,17 +23,16 @@ public class Crawler {
     }
 
     public void getPageLinks(String URL, int depth) {
-        if (depth >= 5) { // Adjust depth limit as needed
+        if (depth >= 20) { 
             System.err.println("Reached max depth of 5, skipping URL: " + URL);
-            return; // Limit the depth of the crawl
+            return; 
         }
         if (!visitedLinks.contains(URL)) {
             visitedLinks.add(URL);
 
-            // Check if URL starts with "http" or "https"
             if (!(URL.startsWith("http://") || URL.startsWith("https://"))) {
                 System.out.println("Skipping unsupported URL: " + URL);
-                return; // Skip this URL if it has an unsupported protocol
+                return; 
             }
 
             try {
@@ -55,7 +54,7 @@ public class Crawler {
                 Elements linksOnPage = document.select("a[href]");
                 for (Element page : linksOnPage) {
                     String linkUrl = page.attr("abs:href");
-                    getPageLinks(linkUrl, depth + 1); // Recursively crawl new link
+                    getPageLinks(linkUrl, depth + 1);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -95,7 +94,6 @@ public class Crawler {
         Connection conn = null;
         try {
             conn = MyDuckDBConnection.connect(originalDbPath);
-            // Ensure the links table is created in the original database
             DuckDBTableCreator.createLinksTable(conn);
             Crawler crawler = new Crawler(conn);
             crawler.getPageLinks("https://www.dnsbelgium.be/", 0);
@@ -107,9 +105,7 @@ public class Crawler {
                     e.printStackTrace();
                 }
             }
-            // Replicate the database after closing the connection
             MyDuckDBConnection.replicateDatabase(originalDbPath, replicatedDbPath);
-            // Ensure the links table is created in the replicated database
             DuckDBTableCreator.createLinksTableInBothDatabases(originalDbPath, replicatedDbPath);
         }
     }

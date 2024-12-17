@@ -12,7 +12,6 @@ public class CrawlerService {
 
     private static final String REPLICATED_DB_PATH = "./db/crawler_db_copy.duckdb";
 
-    // Your existing getLinks method
     public List<LinkData> getLinks() {
         List<LinkData> links = new ArrayList<>();
         try (Connection conn = MyDuckDBConnection.connect(REPLICATED_DB_PATH);
